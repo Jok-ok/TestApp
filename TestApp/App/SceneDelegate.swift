@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 private extension SceneDelegate {
     func initializeRootViewController() {
         let navigationController = UINavigationController()
-        let viewController = ProductListModuleConfigurator.configure()
+        let dependencies = ProductListModuleConfigurator.Dependencies(navigationController: navigationController)
+        let viewController = ProductListModuleConfigurator.configure(with: dependencies)
         navigationController.viewControllers = [viewController]
         
         window?.rootViewController = navigationController
