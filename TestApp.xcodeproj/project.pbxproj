@@ -13,9 +13,15 @@
 		FA2209FD2C58E7780027A0FB /* IProductListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2209FC2C58E7780027A0FB /* IProductListPresenter.swift */; };
 		FA2209FF2C58E7A30027A0FB /* IProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2209FE2C58E7A30027A0FB /* IProductListView.swift */; };
 		FA220A012C58E7EE0027A0FB /* IProductListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A002C58E7EE0027A0FB /* IProductListRouter.swift */; };
+		FA220A032C58E8690027A0FB /* IProductNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A022C58E8690027A0FB /* IProductNetworkService.swift */; };
+		FA220A192C58E96C0027A0FB /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A092C58E96B0027A0FB /* UINavigationController + Extension.swift */; };
+		FA220A1C2C58E96C0027A0FB /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A0C2C58E96B0027A0FB /* UIView + Extension.swift */; };
+		FA220A1D2C58E96C0027A0FB /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A0D2C58E96B0027A0FB /* UIViewController + Extension.swift */; };
+		FA220A222C58E96C0027A0FB /* IModuleTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A132C58E96C0027A0FB /* IModuleTransitionable.swift */; };
+		FA220A262C58F27F0027A0FB /* ProductListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A252C58F27F0027A0FB /* ProductListRouter.swift */; };
 		FA99E33C2C58D98500DFC7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99E33B2C58D98500DFC7A1 /* AppDelegate.swift */; };
 		FA99E33E2C58D98500DFC7A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99E33D2C58D98500DFC7A1 /* SceneDelegate.swift */; };
-		FA99E3402C58D98500DFC7A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99E33F2C58D98500DFC7A1 /* ViewController.swift */; };
+		FA99E3402C58D98500DFC7A1 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99E33F2C58D98500DFC7A1 /* ProductListViewController.swift */; };
 		FA99E3452C58D98600DFC7A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA99E3442C58D98600DFC7A1 /* Assets.xcassets */; };
 		FA99E3482C58D98600DFC7A1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FA99E3472C58D98600DFC7A1 /* Base */; };
 /* End PBXBuildFile section */
@@ -27,10 +33,16 @@
 		FA2209FC2C58E7780027A0FB /* IProductListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProductListPresenter.swift; sourceTree = "<group>"; };
 		FA2209FE2C58E7A30027A0FB /* IProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProductListView.swift; sourceTree = "<group>"; };
 		FA220A002C58E7EE0027A0FB /* IProductListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProductListRouter.swift; sourceTree = "<group>"; };
+		FA220A022C58E8690027A0FB /* IProductNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProductNetworkService.swift; sourceTree = "<group>"; };
+		FA220A092C58E96B0027A0FB /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
+		FA220A0C2C58E96B0027A0FB /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		FA220A0D2C58E96B0027A0FB /* UIViewController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		FA220A132C58E96C0027A0FB /* IModuleTransitionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IModuleTransitionable.swift; sourceTree = "<group>"; };
+		FA220A252C58F27F0027A0FB /* ProductListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListRouter.swift; sourceTree = "<group>"; };
 		FA99E3382C58D98500DFC7A1 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA99E33B2C58D98500DFC7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA99E33D2C58D98500DFC7A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FA99E33F2C58D98500DFC7A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA99E33F2C58D98500DFC7A1 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		FA99E3442C58D98600DFC7A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA99E3472C58D98600DFC7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA99E3492C58D98600DFC7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,7 +101,7 @@
 		FA2209EE2C58E16C0027A0FB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FA99E33F2C58D98500DFC7A1 /* ViewController.swift */,
+				FA99E33F2C58D98500DFC7A1 /* ProductListViewController.swift */,
 				FA2209FE2C58E7A30027A0FB /* IProductListView.swift */,
 			);
 			path = View;
@@ -116,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				FA220A002C58E7EE0027A0FB /* IProductListRouter.swift */,
+				FA220A252C58F27F0027A0FB /* ProductListRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -124,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				FA2209F62C58E5490027A0FB /* ProductNetworkService */,
+				FA220A022C58E8690027A0FB /* IProductNetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -133,6 +147,25 @@
 			children = (
 			);
 			path = ProductNetworkService;
+			sourceTree = "<group>";
+		};
+		FA220A042C58E9490027A0FB /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				FA220A132C58E96C0027A0FB /* IModuleTransitionable.swift */,
+				FA220A0E2C58E96B0027A0FB /* UIKit + Extension */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		FA220A0E2C58E96B0027A0FB /* UIKit + Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FA220A092C58E96B0027A0FB /* UINavigationController + Extension.swift */,
+				FA220A0C2C58E96B0027A0FB /* UIView + Extension.swift */,
+				FA220A0D2C58E96B0027A0FB /* UIViewController + Extension.swift */,
+			);
+			path = "UIKit + Extension";
 			sourceTree = "<group>";
 		};
 		FA99E32F2C58D98500DFC7A1 = {
@@ -155,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				FA2209E92C58E10B0027A0FB /* App */,
+				FA220A042C58E9490027A0FB /* Support */,
 				FA2209F52C58E53B0027A0FB /* Services */,
 				FA2209EB2C58E14E0027A0FB /* Screens */,
 				FA2209EA2C58E11E0027A0FB /* Resources */,
@@ -236,9 +270,15 @@
 				FA220A012C58E7EE0027A0FB /* IProductListRouter.swift in Sources */,
 				FA2209F82C58E5FE0027A0FB /* FontLib.swift in Sources */,
 				FA2209FF2C58E7A30027A0FB /* IProductListView.swift in Sources */,
+				FA220A262C58F27F0027A0FB /* ProductListRouter.swift in Sources */,
+				FA220A192C58E96C0027A0FB /* UINavigationController + Extension.swift in Sources */,
+				FA220A1C2C58E96C0027A0FB /* UIView + Extension.swift in Sources */,
+				FA220A222C58E96C0027A0FB /* IModuleTransitionable.swift in Sources */,
+				FA220A032C58E8690027A0FB /* IProductNetworkService.swift in Sources */,
 				FA2209F32C58E2C80027A0FB /* ProductListModuleConfigurator.swift in Sources */,
-				FA99E3402C58D98500DFC7A1 /* ViewController.swift in Sources */,
+				FA99E3402C58D98500DFC7A1 /* ProductListViewController.swift in Sources */,
 				FA99E33C2C58D98500DFC7A1 /* AppDelegate.swift in Sources */,
+				FA220A1D2C58E96C0027A0FB /* UIViewController + Extension.swift in Sources */,
 				FA2209FB2C58E7630027A0FB /* ProductListPresenter.swift in Sources */,
 				FA99E33E2C58D98500DFC7A1 /* SceneDelegate.swift in Sources */,
 			);

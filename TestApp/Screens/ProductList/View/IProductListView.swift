@@ -1,5 +1,5 @@
 import Foundation
 
-protocol IProductListView {
+protocol IProductListView: AnyObject {
     func setupInitialState()
 }
