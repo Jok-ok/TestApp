@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA2209F32C58E2C80027A0FB /* ProductListModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2209F22C58E2C80027A0FB /* ProductListModuleConfigurator.swift */; };
+		FA2209F82C58E5FE0027A0FB /* FontLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2209F72C58E5FE0027A0FB /* FontLib.swift */; };
 		FA99E33C2C58D98500DFC7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99E33B2C58D98500DFC7A1 /* AppDelegate.swift */; };
 		FA99E33E2C58D98500DFC7A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99E33D2C58D98500DFC7A1 /* SceneDelegate.swift */; };
 		FA99E3402C58D98500DFC7A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99E33F2C58D98500DFC7A1 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		FA2209F22C58E2C80027A0FB /* ProductListModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListModuleConfigurator.swift; sourceTree = "<group>"; };
+		FA2209F72C58E5FE0027A0FB /* FontLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLib.swift; sourceTree = "<group>"; };
 		FA99E3382C58D98500DFC7A1 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA99E33B2C58D98500DFC7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA99E33D2C58D98500DFC7A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,8 @@
 		FA2209EA2C58E11E0027A0FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA99E3442C58D98600DFC7A1 /* Assets.xcassets */,
+				FA2209F72C58E5FE0027A0FB /* FontLib.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -141,7 +145,6 @@
 				FA2209E92C58E10B0027A0FB /* App */,
 				FA2209F52C58E53B0027A0FB /* Services */,
 				FA2209EB2C58E14E0027A0FB /* Screens */,
-				FA99E3442C58D98600DFC7A1 /* Assets.xcassets */,
 				FA2209EA2C58E11E0027A0FB /* Resources */,
 			);
 			path = TestApp;
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA2209F82C58E5FE0027A0FB /* FontLib.swift in Sources */,
 				FA2209F32C58E2C80027A0FB /* ProductListModuleConfigurator.swift in Sources */,
 				FA99E3402C58D98500DFC7A1 /* ViewController.swift in Sources */,
 				FA99E33C2C58D98500DFC7A1 /* AppDelegate.swift in Sources */,
