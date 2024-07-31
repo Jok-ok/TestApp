@@ -19,6 +19,7 @@
 		FA220A1D2C58E96C0027A0FB /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A0D2C58E96B0027A0FB /* UIViewController + Extension.swift */; };
 		FA220A222C58E96C0027A0FB /* IModuleTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A132C58E96C0027A0FB /* IModuleTransitionable.swift */; };
 		FA220A262C58F27F0027A0FB /* ProductListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A252C58F27F0027A0FB /* ProductListRouter.swift */; };
+		FA220A2C2C59A4840027A0FB /* ProductCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A2B2C59A4840027A0FB /* ProductCollectionView.swift */; };
 		FA220A312C59AD220027A0FB /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A2E2C59AD220027A0FB /* APIErrors.swift */; };
 		FA220A322C59AD220027A0FB /* APINetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A2F2C59AD220027A0FB /* APINetworkManager.swift */; };
 		FA220A332C59AD220027A0FB /* APIEndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA220A302C59AD220027A0FB /* APIEndpointProtocol.swift */; };
@@ -47,12 +48,13 @@
 		FA220A132C58E96C0027A0FB /* IModuleTransitionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IModuleTransitionable.swift; sourceTree = "<group>"; };
 		FA220A252C58F27F0027A0FB /* ProductListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListRouter.swift; sourceTree = "<group>"; };
 		FA220A2E2C59AD220027A0FB /* APIErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
-		FA220A2F2C59AD220027A0FB /* APINetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APINetworkManager.swift; sourceTree = "<group>"; };
-		FA220A302C59AD220027A0FB /* APIEndpointProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpointProtocol.swift; sourceTree = "<group>"; };
-		FA220A342C59ADB80027A0FB /* ProductNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNetworkService.swift; sourceTree = "<group>"; };
+		FA220A3B2C59B25A0027A0FB /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
 		FA220A362C59ADCE0027A0FB /* ProductAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPIEndpoint.swift; sourceTree = "<group>"; };
 		FA220A392C59B1FD0027A0FB /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
-		FA220A3B2C59B25A0027A0FB /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
+		FA220A342C59ADB80027A0FB /* ProductNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNetworkService.swift; sourceTree = "<group>"; };
+		FA220A302C59AD220027A0FB /* APIEndpointProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpointProtocol.swift; sourceTree = "<group>"; };
+		FA220A2F2C59AD220027A0FB /* APINetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APINetworkManager.swift; sourceTree = "<group>"; };
+		FA220A2B2C59A4840027A0FB /* ProductCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionView.swift; sourceTree = "<group>"; };
 		FA99E3382C58D98500DFC7A1 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA99E33B2C58D98500DFC7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA99E33D2C58D98500DFC7A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,7 +117,9 @@
 		FA2209EE2C58E16C0027A0FB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA220A272C59A4230027A0FB /* Cells */,
 				FA99E33F2C58D98500DFC7A1 /* ProductListViewController.swift */,
+				FA220A2B2C59A4840027A0FB /* ProductCollectionView.swift */,
 				FA2209FE2C58E7A30027A0FB /* IProductListView.swift */,
 			);
 			path = View;
@@ -184,6 +188,37 @@
 				FA220A0D2C58E96B0027A0FB /* UIViewController + Extension.swift */,
 			);
 			path = "UIKit + Extension";
+			sourceTree = "<group>";
+		};
+		FA220A272C59A4230027A0FB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FA220A2A2C59A44A0027A0FB /* ProductCategoryItemCell */,
+				FA220A292C59A43C0027A0FB /* ProductItemCell */,
+				FA220A282C59A4280027A0FB /* ProductHeaderCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FA220A282C59A4280027A0FB /* ProductHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProductHeaderCell;
+			sourceTree = "<group>";
+		};
+		FA220A292C59A43C0027A0FB /* ProductItemCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProductItemCell;
+			sourceTree = "<group>";
+		};
+		FA220A2A2C59A44A0027A0FB /* ProductCategoryItemCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProductCategoryItemCell;
 			sourceTree = "<group>";
 		};
 		FA220A2D2C59ACA00027A0FB /* Networking */ = {
@@ -324,6 +359,7 @@
 				FA220A3A2C59B1FD0027A0FB /* CategoryResponse.swift in Sources */,
 				FA220A1D2C58E96C0027A0FB /* UIViewController + Extension.swift in Sources */,
 				FA2209FB2C58E7630027A0FB /* ProductListPresenter.swift in Sources */,
+				FA220A2C2C59A4840027A0FB /* ProductCollectionView.swift in Sources */,
 				FA99E33E2C58D98500DFC7A1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

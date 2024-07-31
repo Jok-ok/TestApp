@@ -1,11 +1,19 @@
 import UIKit
 
-final class ProductListViewController: UIViewController {
+final class ProductListViewController: UICollectionViewController {
     private let presenter: IProductListPresenter
+    private lazy var productCollectionView = ProductCollectionView()
     
     init(presenter: IProductListPresenter) {
         self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
+        super.init(collectionViewLayout: .init())
+        
+        configureAppearance()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        collectionView = productCollectionView
     }
     
     @available(*, unavailable)
@@ -26,3 +34,17 @@ extension ProductListViewController: IProductListView {
     }
 }
 
+private extension ProductListViewController {
+    func configureAppearance() {
+        
+    }
+}
+
+private extension ProductListViewController {
+    func setupCollectionView() {
+        collectionView.dataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            nil
+        })
+        collectionView.delegate = self
+    }
+}
