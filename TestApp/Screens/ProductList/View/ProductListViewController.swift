@@ -30,14 +30,20 @@ final class ProductListViewController: UICollectionViewController {
 }
 
 extension ProductListViewController: IProductListView {
-    func setupInitialState() {
+    func setupInitialState(with categories: [ProductCategoryCellModel]) {
         
+        productCollectionView.productCategoriesSection.items = categories
+        
+        colletionViewAdapter.register(cellType: ProductCategoryCell.self)
+        
+        colletionViewAdapter.append(section: productCollectionView.productCategoriesSection)
     }
+    
 }
 
 private extension ProductListViewController {
     func configureAppearance() {
-        
+        collectionView.backgroundColor = .background
     }
 }
 

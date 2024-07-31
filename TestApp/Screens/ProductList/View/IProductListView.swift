@@ -1,5 +1,5 @@
 import Foundation
 
 protocol IProductListView: AnyObject {
-    func setupInitialState()
+    func setupInitialState(with categories: [ProductCategoryCellModel])
 }

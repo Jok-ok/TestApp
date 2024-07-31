@@ -1,14 +1,17 @@
-import Foundation
+import UIKit.UIImage
 
-struct ProductCategoryCellModel {
+class ProductCategoryCellModel {
     let imagePath: String
     let id: String
     let name: String
-    let subMenuItemsCount: Int
-}
-
-extension ProductCategoryCellModel {
-    init(with categoryDTO: CategoryDTO) {
-        self.init(imagePath: categoryDTO.image, id: categoryDTO.menuID, name: categoryDTO.name, subMenuItemsCount: categoryDTO.subMenuCount)
+    let subMenuItemsText: String
+    var image: UIImage?
+    
+    init(imagePath: String, id: String, name: String, subMenuItemsText: String, image: UIImage? = nil) {
+        self.imagePath = imagePath
+        self.id = id
+        self.name = name
+        self.subMenuItemsText = subMenuItemsText
+        self.image = image
     }
 }

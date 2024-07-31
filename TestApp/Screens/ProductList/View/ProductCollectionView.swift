@@ -1,6 +1,8 @@
 import UIKit
 
 final class ProductCollectionView: UICollectionView {
+    lazy var productCategoriesSection = CollectionViewSection<ProductCategoryCell>()
+    
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         configureAppearance()
@@ -23,7 +25,7 @@ private extension ProductCollectionView {
                 return self?.makeProductCategoriesSection()
             }
             if sectionIndex == 1 {
-                return self?.makeProductCategoriesSection()
+                return self?.makeProductListSection()
             }
             
             return nil
@@ -35,23 +37,23 @@ private extension ProductCollectionView {
     func makeProductCategoriesSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.3),
-                heightDimension: .fractionalHeight(0.2)
+                widthDimension: .estimated(200),
+                heightDimension: .fractionalHeight(1)
             )
         )
+        item.edgeSpacing = .init(leading: .fixed(10), top: .fixed(5), trailing: .fixed(10), bottom: .fixed(5))
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.25)
+                widthDimension: .estimated(frame.width),
+                heightDimension: .estimated(125)
             ),
             subitems: [item]
         )
         
-        group.interItemSpacing = .fixed(5)
-    
         let section = NSCollectionLayoutSection(group: group)
         
+        section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
         
         return section
