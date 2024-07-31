@@ -3,6 +3,7 @@ import UIKit
 final class ProductListViewController: UICollectionViewController {
     private let presenter: IProductListPresenter
     private lazy var productCollectionView = ProductCollectionView()
+    private lazy var colletionViewAdapter = CollectionViewAdapter(collectionView: productCollectionView)
     
     init(presenter: IProductListPresenter) {
         self.presenter = presenter
@@ -41,10 +42,5 @@ private extension ProductListViewController {
 }
 
 private extension ProductListViewController {
-    func setupCollectionView() {
-        collectionView.dataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            nil
-        })
-        collectionView.delegate = self
-    }
+    
 }
