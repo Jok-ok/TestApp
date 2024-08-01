@@ -2,7 +2,7 @@ import UIKit
 
 class CollectionViewAdapter: NSObject {
     private weak var collectionView: UICollectionView?
-    private var sections: [CollectionViewSectionProtocol] = []
+    private var sections: [ICollectionViewSection] = []
     private var hidedSectionIndexes = Set<Int>()
 
     init(collectionView: UICollectionView) {
@@ -35,11 +35,11 @@ class CollectionViewAdapter: NSObject {
         collectionView?.dataSource = self
     }
 
-    func configure(with sections: [CollectionViewSectionProtocol]) {
+    func configure(with sections: [ICollectionViewSection]) {
         self.sections = sections
     }
 
-    func append(section: CollectionViewSectionProtocol) {
+    func append(section: ICollectionViewSection) {
         self.sections.append(section)
     }
 

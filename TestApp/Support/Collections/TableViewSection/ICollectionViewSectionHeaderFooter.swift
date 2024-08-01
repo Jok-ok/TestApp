@@ -1,5 +1,5 @@
 import UIKit.UITableView
 
-protocol CollectionViewSectionHeaderFooterProtocol {
+protocol ICollectionViewSectionHeaderFooter {
     func dequeReusableHeaderFooter(_ collectionView: UICollectionView, kind: String, for indexPath: IndexPath) -> UICollectionReusableView
 }

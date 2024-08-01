@@ -1,9 +1,10 @@
 import UIKit
 
-final class ProductHeaderCell: UICollectionReusableView, CellIdentifiableProtocol, CellConfigurableProtocol {
-    typealias Model = ProductHeaderCellModel
+final class CategoriesHeaderCell: UICollectionReusableView, CellIdentifiableProtocol, CellConfigurableProtocol {
+    typealias Model = CategoriesHeaderCellModel
     
     private lazy var label = UILabel()
+    private lazy var logoImage = UIImageView(image: .logo)
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -16,24 +17,26 @@ final class ProductHeaderCell: UICollectionReusableView, CellIdentifiableProtoco
     }
     
     //MARK: - CellConfigurableProtocol
-    func configure(with model: ProductHeaderCellModel) {
-        label.text = model.headerText
+    func configure(with model: CategoriesHeaderCellModel) {
+        label.text = model.title
     }
     
 }
 
 //MARK: - Appearance
-private extension ProductHeaderCell {
+private extension CategoriesHeaderCell {
     func configureAppearance() {
         configureLabelAppearance()
         
         addSubviews()
         
         constraintLabel()
+        constraintLogoImageView()
     }
     
     func addSubviews() {
         addSubview(label)
+        addSubview(logoImage)
     }
     
     func configureLabelAppearance() {
@@ -46,12 +49,27 @@ private extension ProductHeaderCell {
     
     func constraintLabel() {
         label.translatesAutoresizingMaskIntoConstraints = false
+        let offset = 10.0
         
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: offset),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
             label.topAnchor.constraint(equalTo: topAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+
+    }
+    
+    func constraintLogoImageView() {
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        logoImage.setContentCompressionResistancePriority(.required, for: .horizontal)
+        
+        NSLayoutConstraint.activate([
+            logoImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            logoImage.widthAnchor.constraint(equalTo: logoImage.heightAnchor),
+            logoImage.topAnchor.constraint(equalTo: topAnchor),
+            logoImage.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
 
     }

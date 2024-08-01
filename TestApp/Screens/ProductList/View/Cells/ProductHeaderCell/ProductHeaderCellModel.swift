@@ -1,5 +1,6 @@
 import Foundation
 
-struct ProductHeaderCellModel {
+struct ProductHeaderCellModel: Identifiable {
+    let id = UUID()
     let headerText: String
 }

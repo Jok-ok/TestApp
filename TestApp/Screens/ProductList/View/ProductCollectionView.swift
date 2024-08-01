@@ -1,8 +1,11 @@
 import UIKit
 
 final class ProductCollectionView: UICollectionView {
-    lazy var productCategoriesSection = CollectionViewSection<ProductCategoryCell>()
+    //MARK: - public properties
+    lazy var productCategoriesSection = CollectionViewSection<ProductCategoryCell>(sectionId: ProductListSections.categories.rawValue)
+    lazy var productSection = CollectionViewSection<ProductItemCell>(sectionId: ProductListSections.products.rawValue, allowSelection: false)
     
+    //MARK: - init
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         configureAppearance()
@@ -14,6 +17,7 @@ final class ProductCollectionView: UICollectionView {
     }
 }
 
+//MARK: - Appearance CollectionViewLayoutConfiguration
 private extension ProductCollectionView {
     func configureAppearance() {
         collectionViewLayout = makeLayout()
@@ -21,6 +25,7 @@ private extension ProductCollectionView {
     
     func makeLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
+            
             if sectionIndex == 0 {
                 return self?.makeProductCategoriesSection()
             }
@@ -46,12 +51,23 @@ private extension ProductCollectionView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .estimated(frame.width),
-                heightDimension: .estimated(125)
+                heightDimension: .estimated(150)
             ),
             subitems: [item]
         )
         
         let section = NSCollectionLayoutSection(group: group)
+        
+        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .estimated(50)),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading)
+        
+        headerItem.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
+        section.boundarySupplementaryItems = [headerItem]
         
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
@@ -62,23 +78,36 @@ private extension ProductCollectionView {
     func makeProductListSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.4)
+                widthDimension: .fractionalWidth(0.5),
+                heightDimension: .fractionalHeight(1)
             )
         )
         
-        let group = NSCollectionLayoutGroup.vertical(
+        let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .estimated(400)
+                heightDimension: .fractionalHeight(0.38)
             ),
-            subitems: [item]
+            repeatingSubitem: item, count: 2
         )
-        group.interItemSpacing = .fixed(10)
+        
+        group.interItemSpacing = .fixed(22)
     
         let section = NSCollectionLayoutSection(group: group)
         
+        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .estimated(50)),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading)
+        
+        headerItem.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
+        section.boundarySupplementaryItems = [headerItem]
+        
         section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+        section.interGroupSpacing = 10
         
         return section
     }

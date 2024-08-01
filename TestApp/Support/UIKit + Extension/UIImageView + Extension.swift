@@ -3,15 +3,22 @@ import UIKit
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit, compressionFactor: CGFloat = 1, completion: ((UIImage)->Void)? = nil) {
         contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            DispatchQueue.global(qos: .utility).async {
+        let request = URLRequest(url: url, timeoutInterval: 5)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.global(qos: .utility).async { [weak self] in
                 guard
                     let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                     let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                     let data = data, error == nil,
                     let compressedData = UIImage(data: data)?.jpegData(compressionQuality: compressionFactor),
                     let image = UIImage(data: compressedData)
-                    else { return }
+                else {
+                    DispatchQueue.main.async(qos: .background) { [weak self] in
+                        self?.image = .placeholder
+                        completion?(.placeholder)
+                    }
+                    return
+                }
             DispatchQueue.main.async(qos: .background) { [weak self] in
                     self?.image = image
                     completion?(image)

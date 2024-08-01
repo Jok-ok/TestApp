@@ -10,6 +10,6 @@ struct ProductResponse: Codable {
 // MARK: - MenuList
 struct ProductDTO: Codable {
     let id, image, name, content: String
-    let price, weight: String
-    let spicy: String?
+    let price: String
+    let spicy, weight: String?
 }

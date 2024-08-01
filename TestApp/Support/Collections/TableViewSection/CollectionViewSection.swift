@@ -2,7 +2,9 @@ import UIKit
 
 class CollectionViewSection<Cell: UICollectionViewCell &
                         CellConfigurableProtocol &
-                        CellIdentifiableProtocol>: CollectionViewSectionProtocol {
+                                CellIdentifiableProtocol>: ICollectionViewSection where Cell.Model: Identifiable {
+    var id: Int
+    
     typealias CellModel = Cell.Model
     typealias Cell = Cell
     typealias CellModelHandler = (CellModel) -> Void
@@ -10,10 +12,11 @@ class CollectionViewSection<Cell: UICollectionViewCell &
     private var tapHandler: CellModelHandler?
     private let removeItemHandler: CellModelHandler?
 
-    private var header: CollectionViewSectionHeaderFooterProtocol?
-    private var footer: CollectionViewSectionHeaderFooterProtocol?
+    private var header: ICollectionViewSectionHeaderFooter?
+    private var footer: ICollectionViewSectionHeaderFooter?
 
     var isEditable: Bool
+    var selectionIsAllowed: Bool = true
 
     var items: [CellModel]
 
@@ -21,14 +24,16 @@ class CollectionViewSection<Cell: UICollectionViewCell &
         items.count
     }
 
-    init(items: [CellModel] = [],
+    init(sectionId: Int, items: [CellModel] = [],
          isEditable: Bool = false,
          tapHandler: CellModelHandler? = nil,
-         removeItemHandler: CellModelHandler? = nil) {
+         removeItemHandler: CellModelHandler? = nil, allowSelection: Bool = true) {
+        self.id = sectionId
         self.isEditable = isEditable
         self.tapHandler = tapHandler
         self.removeItemHandler = removeItemHandler
         self.items = items
+        selectionIsAllowed = allowSelection
     }
 
     func onItemSelected(at row: Int) {
@@ -45,12 +50,24 @@ class CollectionViewSection<Cell: UICollectionViewCell &
         cell.configure(with: items[indexPath.row])
         return cell
     }
-
-    func setHeaderCell(with cell: CollectionViewSectionHeaderFooterProtocol) {
-        header = cell
+    
+    func dequeueReusableCell(_ collectionView: UICollectionView, cellForRowAt indexPath: IndexPath, itemIdentifier: UUID) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(with: Cell.self, for: indexPath)
+        if let item = items.first(where: { $0.id as? UUID == itemIdentifier }) {
+            cell.configure(with: item)
+        }
+        return cell
     }
 
-    func setFooterCell(with cell: CollectionViewSectionHeaderFooterProtocol) {
+    func setHeaderCell(with cell: ICollectionViewSectionHeaderFooter) {
+        header = cell
+    }
+    
+    func getItemsIds() -> [UUID] {
+        items.compactMap({ $0.id as? UUID })
+    }
+
+    func setFooterCell(with cell: ICollectionViewSectionHeaderFooter) {
         footer = cell
     }
 

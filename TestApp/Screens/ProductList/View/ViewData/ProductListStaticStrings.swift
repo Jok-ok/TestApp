@@ -7,5 +7,13 @@ struct ProductListStaticStrings {
     
     let goodsText = "товаров"
     
+    let chooseCategory = "Выберите категорию"
+    
     let apiURL = "https://vkus-sovet.ru/"
+    
+    let errorTitle = "Ошибка"
+    
+    let cancelErrorButtonTitle = "ОК"
+    
+    let addToShopButtonText = "В корзину"
 }

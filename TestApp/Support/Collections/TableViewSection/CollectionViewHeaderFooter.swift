@@ -3,7 +3,7 @@ import UIKit
 class CollectionViewHeaderFooter<HeaderFooterCell: UICollectionReusableView &
                                 CellIdentifiableProtocol &
                                 CellConfigurableProtocol>:
-                                    CollectionViewSectionHeaderFooterProtocol {
+                                    ICollectionViewSectionHeaderFooter {
     
     typealias HeaderFooterModel = HeaderFooterCell.Model
 
@@ -14,7 +14,10 @@ class CollectionViewHeaderFooter<HeaderFooterCell: UICollectionReusableView &
     }
 
     func dequeReusableHeaderFooter(_ collectionView: UICollectionView, kind: String, for indexPath: IndexPath) -> UICollectionReusableView {
-        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderFooterCell.reuseIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderFooterCell.reuseIdentifier, for: indexPath) as? HeaderFooterCell else { return UICollectionReusableView() }
+        
+        cell.configure(with: cellModel)
+        
         return cell
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-enum ProductListSections: Int {
+enum ProductListSections: Int, CaseIterable {
     case categories
     case products
 }

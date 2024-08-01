@@ -1,10 +1,12 @@
 import UIKit
 
 final class ProductCategoryCell: UICollectionViewCell, CellConfigurableProtocol, CellIdentifiableProtocol {
+    //MARK: - Private properties
     private lazy var cellImageView = UIImageView()
     private lazy var categoryLabel = UILabel()
     private lazy var productCountLabel = UILabel()
     private lazy var activityIndicator = UIActivityIndicatorView(style: .medium)
+    private var imageConstraint: NSLayoutConstraint?
     
     override var isSelected: Bool {
         didSet{
@@ -21,6 +23,7 @@ final class ProductCategoryCell: UICollectionViewCell, CellConfigurableProtocol,
         }
     }
     
+    //MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,6 +35,7 @@ final class ProductCategoryCell: UICollectionViewCell, CellConfigurableProtocol,
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Cell configurable protocol
     typealias Model = ProductCategoryCellModel
     
     func configure(with model: ProductCategoryCellModel) {
@@ -39,11 +43,10 @@ final class ProductCategoryCell: UICollectionViewCell, CellConfigurableProtocol,
         activityIndicator.startAnimating()
         categoryLabel.text = model.name
         productCountLabel.text = model.subMenuItemsText
-    
         downloadImageIfNeeded(for: model)
     }
 }
-
+//MARK: - Image downloading
 private extension ProductCategoryCell {
     func downloadImageIfNeeded(for model: ProductCategoryCellModel) {
         if model.image == nil {
@@ -63,6 +66,7 @@ private extension ProductCategoryCell {
     }
 }
 
+//MARK: - Appearance
 private extension ProductCategoryCell {
     func configureAppearance() {
         contentView.layer.cornerRadius = 15
@@ -89,20 +93,18 @@ private extension ProductCategoryCell {
         contentView.addSubview(activityIndicator)
     }
     
-    
+    //MARK: - UI configuration
     func configureCategoryLabelAppearance() {
         categoryLabel.textColor = .font
         categoryLabel.font = FontLib.cellTitile
         categoryLabel.textAlignment = .center
-        categoryLabel.adjustsFontSizeToFitWidth = true
-        categoryLabel.minimumScaleFactor = 0.2
+        categoryLabel.numberOfLines = 2
     }
     
     func configureProductCountLabelAppearance() {
         productCountLabel.textColor = .secondaryLabel
         productCountLabel.font = FontLib.cellSubtitle
         productCountLabel.textAlignment = .center
-        productCountLabel.adjustsFontSizeToFitWidth = true
     }
     
     func configureProductActivityIndicatorAppearance() {
@@ -110,43 +112,48 @@ private extension ProductCategoryCell {
     }
     
     func configureCellImageViewAppearance() {
-        cellImageView.contentMode = .scaleAspectFit
+        cellImageView.contentMode = .scaleAspectFill
         cellImageView.clipsToBounds = true
     }
     
+    //MARK: - Constraints
     func constraintCellImageView() {
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             cellImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             cellImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cellImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
             cellImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cellImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
+            cellImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.55),
         ])
     }
     
     func constraintCategoryLabel() {
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let offsets = 12.0
+        let topOffset = 10.0
+        let offsets = 6.0
         
         NSLayoutConstraint.activate([
             categoryLabel.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: offsets),
             categoryLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -offsets),
             categoryLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            categoryLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: offsets),
+            categoryLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: topOffset),
+            categoryLabel.bottomAnchor.constraint(equalTo: productCountLabel.topAnchor, constant: -topOffset)
         ])
     }
     
     func constraintProductCountLabel() {
         productCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        let bottomOffset = 6.0
-        let offset = 12.0
+        let bottomOffset = 10.0
+        let topOffset = 10.0
+        let offset = 6.0
         
         NSLayoutConstraint.activate([
             productCountLabel.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: offset),
             productCountLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -offset),
-            productCountLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: offset),
+            productCountLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: topOffset),
             productCountLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             productCountLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -bottomOffset)
         ])
