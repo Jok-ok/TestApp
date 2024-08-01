@@ -17,7 +17,7 @@ final class ProductCollectionView: UICollectionView {
     }
 }
 
-//MARK: - Appearance CollectionViewLayoutConfiguration
+//MARK: - Appearance & CollectionViewLayoutConfiguration
 private extension ProductCollectionView {
     func configureAppearance() {
         collectionViewLayout = makeLayout()

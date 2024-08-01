@@ -4,12 +4,15 @@ final class APINetworkManager {
     static private var session: URLSession = {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
-        config.timeoutIntervalForRequest = 3
+        config.timeoutIntervalForRequest = 5
         config.isDiscretionary = true
         config.urlCache = nil
         
         return URLSession(configuration: config)
     }()
+    
+    static private let jsonDecoder = JSONDecoder()
+    
     static func request<DataType: Codable, EndpointType: APIEndpointProtocol>(
         to endpoint: EndpointType,
         with completion: ((Result<DataType, APIErrors>) -> Void)? ) {
@@ -63,15 +66,11 @@ final class APINetworkManager {
                 }
                 
                 do {
-                    let jsonDecoder = JSONDecoder()
-                    jsonDecoder.allowsJSON5 = true
                     let responseData = try jsonDecoder.decode(DataType.self, from: data)
                     DispatchQueue.main.async {
                         completion?(.success(responseData))
                     }
                 } catch let error {
-                    print(String(data: data, encoding: .utf8))
-                    print(error.localizedDescription)
                     DispatchQueue.main.async {
                         completion?(.failure(.jsonParsingFailure))
                     }

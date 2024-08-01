@@ -1,8 +1,7 @@
 import UIKit
 
 final class CategoriesHeaderCell: UICollectionReusableView, CellIdentifiableProtocol, CellConfigurableProtocol {
-    typealias Model = CategoriesHeaderCellModel
-    
+    //MARK: - private properties
     private lazy var label = UILabel()
     private lazy var logoImage = UIImageView(image: .logo)
     //MARK: - Init
@@ -17,6 +16,8 @@ final class CategoriesHeaderCell: UICollectionReusableView, CellIdentifiableProt
     }
     
     //MARK: - CellConfigurableProtocol
+    typealias Model = CategoriesHeaderCellModel
+    
     func configure(with model: CategoriesHeaderCellModel) {
         label.text = model.title
     }
@@ -47,6 +48,7 @@ private extension CategoriesHeaderCell {
         label.minimumScaleFactor = 0.7
     }
     
+    //MARK: - Constraints
     func constraintLabel() {
         label.translatesAutoresizingMaskIntoConstraints = false
         let offset = 10.0

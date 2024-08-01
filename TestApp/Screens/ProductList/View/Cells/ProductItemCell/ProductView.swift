@@ -1,6 +1,7 @@
 import UIKit
 
 final class ProductView: UIView {
+    //MARK: - UI properties
     private lazy var productNameLabel = UILabel()
     private lazy var contentLabel = UILabel()
     private lazy var costWeightStackView: UIStackView = {
