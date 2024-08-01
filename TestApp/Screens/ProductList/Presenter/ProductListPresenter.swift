@@ -3,59 +3,41 @@ import Foundation
 final class ProductListPresenter: IProductListPresenter {
     //MARK: - Private properties
     private weak var view: IProductListView?
-    private var router: IProductListRouter
-    private let productService: IProductNetworkService
+    private let router: IProductListRouter
+    private let interactor: IProductListInteractor
     
-    private let staticStrings = ProductListStaticStrings()
     private var categoriesCellModels = [ProductCategoryCellModel]()
     private var productsCellModels = [ProductItemCellModel]()
     
-    init(router: IProductListRouter, productService: IProductNetworkService) {
+    init(router: IProductListRouter, interactor: IProductListInteractor) {
         self.router = router
-        self.productService = productService
+        self.interactor = interactor
+        interactor.configure(with: self)
     }
     
     //MARK: - IProductListPresenter
     func viewDidLoad(with view: IProductListView) {
         self.view = view
-
-        productService.getCategories { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let categories):
-                categoriesCellModels = categories.compactMap({ categoryDTO in
-                    guard categoryDTO.subMenuCount > 0 else { return nil }
-                    return ProductCategoryCellModel(
-                        imagePath: self.staticStrings.apiURL + categoryDTO.image,
-                        id: categoryDTO.menuID,
-                        name: categoryDTO.name,
-                        subMenuItemsText: "\(categoryDTO.subMenuCount) \(self.staticStrings.goodsText)")
-                })
-                view.setupInitialState(with: categoriesCellModels, categoriesHeader: staticStrings.screenTitle, productsHeader: staticStrings.chooseCategory)
-            case .failure(let error):
-                showAlert(message: error.localizedDescription)
-            }
-        }
+        view.configureInitialState()
+        view.configureProductCategoriesSectionHeader(ProductListStaticStrings.screenTitle)
+        view.configureProductListHeader(with: ProductListStaticStrings.chooseCategory)
+        interactor.fecthCategories()
     }
     
     func categoryDidTapped(_ category: ProductCategoryCellModel) {
         view?.configureProductListHeader(with: category.name)
-        productService.getProducts(inCategory: category.category_id) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let products):
-                productsCellModels = products.map { ProductItemCellModel(with: $0, addToShopButtonText: self.staticStrings.addToShopButtonText, imagePath: self.staticStrings.apiURL + $0.image)}
-                view?.configureProductList(with: productsCellModels)
-            case .failure(let error):
-                showAlert(message: error.localizedDescription)
-            }
-        }
+        interactor.fetchProducts(for: category.category_id)
     }
-}
-
-//MARK: - private methods
-private extension ProductListPresenter {
+    
+    func present(products: [ProductItemCellModel]) {
+        view?.configureProductList(with: products)
+    }
+    
+    func present(categories: [ProductCategoryCellModel]) {
+        view?.configureCategoriesSection(with: categories)
+    }
+    
     func showAlert(message: String) {
-        router.showError(title: staticStrings.errorTitle, message: message, cancelButtonTitle: staticStrings.cancelErrorButtonTitle)
+        router.showError(title: ProductListStaticStrings.errorTitle, message: message, cancelButtonTitle: ProductListStaticStrings.cancelErrorButtonTitle)
     }
 }

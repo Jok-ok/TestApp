@@ -99,6 +99,8 @@ private extension ProductCategoryCell {
         categoryLabel.font = FontLib.cellTitile
         categoryLabel.textAlignment = .center
         categoryLabel.numberOfLines = 2
+        categoryLabel.adjustsFontSizeToFitWidth = true
+        categoryLabel.minimumScaleFactor = 0.5
     }
     
     func configureProductCountLabelAppearance() {
@@ -140,7 +142,6 @@ private extension ProductCategoryCell {
             categoryLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -offsets),
             categoryLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             categoryLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: topOffset),
-            categoryLabel.bottomAnchor.constraint(equalTo: productCountLabel.topAnchor, constant: -topOffset)
         ])
     }
     
@@ -150,10 +151,12 @@ private extension ProductCategoryCell {
         let topOffset = 10.0
         let offset = 6.0
         
+        productCountLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        
         NSLayoutConstraint.activate([
             productCountLabel.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: offset),
             productCountLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -offset),
-            productCountLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: topOffset),
+            productCountLabel.topAnchor.constraint(greaterThanOrEqualTo: categoryLabel.bottomAnchor, constant: topOffset),
             productCountLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             productCountLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -bottomOffset)
         ])

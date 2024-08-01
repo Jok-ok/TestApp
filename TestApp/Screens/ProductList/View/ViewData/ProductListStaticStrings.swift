@@ -1,19 +1,19 @@
 import Foundation
 
-struct ProductListStaticStrings {
-    let screenTitle = "VKUSSOVET"
+enum ProductListStaticStrings {
+    static let screenTitle = "VKUSSOVET"
     
-    let noProductsYesMessage = "Пока нам нечего вам показать. Выберите категорию."
+    static let noProductsYetMessage = "Пока нам нечего вам показать. Выберите категорию."
     
-    let goodsText = "товаров"
+    static let goodsText = "товаров"
     
-    let chooseCategory = "Выберите категорию"
+    static let chooseCategory = "Выберите категорию"
     
-    let apiURL = "https://vkus-sovet.ru/"
+    static let apiURL = "https://vkus-sovet.ru/"
     
-    let errorTitle = "Ошибка"
+    static let errorTitle = "Ошибка"
     
-    let cancelErrorButtonTitle = "ОК"
+    static let cancelErrorButtonTitle = "ОК"
     
-    let addToShopButtonText = "В корзину"
+    static let addToShopButtonText = "В корзину"
 }

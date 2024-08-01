@@ -1,6 +1,6 @@
 import Foundation
 
-protocol APIEndpointProtocol {
+protocol IAPIEndpoint {
     var urlString: String { get }
     var queryItems: [String: String] { get }
     var headers: [String: String] { get }

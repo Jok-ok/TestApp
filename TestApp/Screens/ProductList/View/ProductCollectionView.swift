@@ -17,7 +17,7 @@ final class ProductCollectionView: UICollectionView {
     }
 }
 
-//MARK: - Appearance & CollectionViewLayoutConfiguration
+//MARK: - Appearance & CollectionViewLayout
 private extension ProductCollectionView {
     func configureAppearance() {
         collectionViewLayout = makeLayout()
@@ -51,7 +51,7 @@ private extension ProductCollectionView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .estimated(frame.width),
-                heightDimension: .estimated(150)
+                heightDimension: .estimated(160)
             ),
             subitems: [item]
         )

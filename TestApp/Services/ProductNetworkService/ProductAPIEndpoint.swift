@@ -7,7 +7,7 @@ enum ProductAPIEndpoint {
     case getProducts(inCategory: String)
 }
 
-extension ProductAPIEndpoint: APIEndpointProtocol {
+extension ProductAPIEndpoint: IAPIEndpoint {
     var method: HTTPMethod {
         switch self {
         case .getCategories:

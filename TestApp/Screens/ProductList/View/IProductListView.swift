@@ -1,7 +1,9 @@
 import Foundation
 
 protocol IProductListView: AnyObject {
-    func setupInitialState(with categories: [ProductCategoryCellModel], categoriesHeader: String, productsHeader: String)
+    func configureInitialState()
     func configureProductListHeader(with header: String)
+    func configureProductCategoriesSectionHeader(_ header: String)
     func configureProductList(with products: [ProductItemCellModel])
+    func configureCategoriesSection(with categories: [ProductCategoryCellModel])
 }

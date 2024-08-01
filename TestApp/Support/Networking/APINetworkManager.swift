@@ -13,7 +13,7 @@ final class APINetworkManager {
     
     static private let jsonDecoder = JSONDecoder()
     
-    static func request<DataType: Codable, EndpointType: APIEndpointProtocol>(
+    static func request<DataType: Codable, EndpointType: IAPIEndpoint>(
         to endpoint: EndpointType,
         with completion: ((Result<DataType, APIErrors>) -> Void)? ) {
             let queryItems = endpoint.queryItems.compactMap { key, value in
@@ -70,7 +70,7 @@ final class APINetworkManager {
                     DispatchQueue.main.async {
                         completion?(.success(responseData))
                     }
-                } catch let error {
+                } catch {
                     DispatchQueue.main.async {
                         completion?(.failure(.jsonParsingFailure))
                     }

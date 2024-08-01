@@ -9,7 +9,8 @@ final class ProductListModuleConfigurator {
     
     static func configure(with dependencies: Dependencies) -> UIViewController {
         let router = ProductListRouter(navigationController: dependencies.navigationController)
-        let presenter = ProductListPresenter(router: router, productService: dependencies.productNetworkService)
+        let ineractor = ProductListInteractor(productService: dependencies.productNetworkService)
+        let presenter = ProductListPresenter(router: router, interactor: ineractor)
         let view = ProductListViewController(presenter: presenter)
         
         return view

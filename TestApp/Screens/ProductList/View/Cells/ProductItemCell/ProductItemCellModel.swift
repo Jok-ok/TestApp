@@ -18,18 +18,6 @@ class ProductItemCellModel: Identifiable {
         self.spicy = spicy
         self.image = image
         self.addToShopButtonText = addToShopButtonText
-    }
-    
-    convenience init(with productDTO: ProductDTO, addToShopButtonText: String, imagePath: String) {
-        self.init(id: productDTO.id,
-                  imagePath: imagePath,
-                  name: productDTO.name,
-                  content: productDTO.content,
-                  price: productDTO.price.replacing(".00", with: "", maxReplacements: 1) + "₽",
-                  weight: "/ " + (productDTO.weight ?? "-"),
-                  spicy: productDTO.spicy == "Y" ? true : false,
-                  addToShopButtonText: addToShopButtonText)
-    }
-    
+    }    
 }
 

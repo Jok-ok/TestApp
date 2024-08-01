@@ -34,17 +34,26 @@ final class ProductListViewController: UICollectionViewController {
 
 //MARK: - IProductListView
 extension ProductListViewController: IProductListView {
-    func setupInitialState(with categories: [ProductCategoryCellModel], categoriesHeader: String, productsHeader: String) {
-        setupProductCategorySection(with: categories, title: categoriesHeader)
-        setupProductSection(with: productsHeader)
+    func configureInitialState() {
+        setupProductCategorySection()
+        setupProductSection()
     }
     
     func configureProductListHeader(with header: String) {
         let headerCellModel = ProductHeaderCellModel(headerText: header)
-                                                            
         let productHeader = CollectionViewHeaderFooter<ProductHeaderCell>(cellModel: headerCellModel)
-                
         productCollectionView.productSection.setHeaderCell(with: productHeader)
+    }
+    
+    func configureProductCategoriesSectionHeader(_ header: String) {
+        let categoriesListHeaderModel = CategoriesHeaderCellModel(title: header)
+        let categoriesListHeader = CollectionViewHeaderFooter<CategoriesHeaderCell>(cellModel: categoriesListHeaderModel)
+        productCollectionView.productCategoriesSection.setHeaderCell(with: categoriesListHeader)
+    }
+    
+    func configureCategoriesSection(with categories: [ProductCategoryCellModel]) {
+        productCollectionView.productCategoriesSection.items = categories
+        colletionViewAdapter.reloadSection(section: productCollectionView.productCategoriesSection)
     }
     
     func configureProductList(with products: [ProductItemCellModel]) {
@@ -55,30 +64,18 @@ extension ProductListViewController: IProductListView {
 
 //MARK: - CollectionViewConfiguration
 private extension ProductListViewController {
-    func setupProductCategorySection(with categories: [ProductCategoryCellModel], title: String) {
-
-        productCollectionView.productCategoriesSection.items = categories
-        
-        productCollectionView.productCategoriesSection.setTapHandler(onCategoryTapped)
-        
-        
+    func setupProductCategorySection() {
         colletionViewAdapter.register(cellType: ProductCategoryCell.self)
         colletionViewAdapter.register(headerFooterType: CategoriesHeaderCell.self)
-        
-        let categoriesListHeaderModel = CategoriesHeaderCellModel(title: title)
-        
-        let categoriesListHeader = CollectionViewHeaderFooter<CategoriesHeaderCell>(cellModel: categoriesListHeaderModel)
 
-        productCollectionView.productCategoriesSection.setHeaderCell(with: categoriesListHeader)
-        
+        productCollectionView.productCategoriesSection.setTapHandler(onCategoryTapped)
+
         colletionViewAdapter.append(section: productCollectionView.productCategoriesSection)
     }
     
-    func setupProductSection(with header: String) {
+    func setupProductSection() {
         colletionViewAdapter.register(cellType: ProductItemCell.self)
         colletionViewAdapter.register(headerFooterType: ProductHeaderCell.self)
-        
-        configureProductListHeader(with: header)
         
         colletionViewAdapter.append(section: productCollectionView.productSection)
     }

@@ -14,7 +14,6 @@ final class ProductNetworkService: IProductNetworkService {
                         completion(.failure(.noDataInResponse))
                     }
                 }
-                print(categoryResponse)
                 completion(.success(categoryResponse.menuList))
             case .failure(let error):
                 completion(.failure(error))
