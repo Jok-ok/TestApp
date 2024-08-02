@@ -7,12 +7,12 @@ enum ProductAPIEndpoint {
     case getProducts(inCategory: String)
 }
 
-extension ProductAPIEndpoint: APIEndpointProtocol {
+extension ProductAPIEndpoint: IAPIEndpoint {
     var method: HTTPMethod {
         switch self {
         case .getCategories:
                 .get
-        case .getProducts(let inCategory):
+        case .getProducts(_):
                 .post
         }
     }
@@ -23,7 +23,7 @@ extension ProductAPIEndpoint: APIEndpointProtocol {
         switch self {
         case .getCategories:
             baseURL + "getMenu.php"
-        case .getProducts(let inCategory):
+        case .getProducts(_):
             baseURL + "getSubMenu.php"
         }
     }

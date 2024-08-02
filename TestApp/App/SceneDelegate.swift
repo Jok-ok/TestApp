@@ -11,6 +11,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
+        window?.overrideUserInterfaceStyle = .dark
+        
         initializeRootViewController()
     }
 }

@@ -3,8 +3,7 @@ import Foundation
 final class ProductNetworkService: IProductNetworkService {
     func getCategories(completion: @escaping (Result<[CategoryDTO], APIErrors>) -> Void) {
         APINetworkManager.request(
-            to: ProductAPIEndpoint.getCategories) { [weak self] (result: Result<CategoryResponse, APIErrors>) in
-            guard let self else { return }
+            to: ProductAPIEndpoint.getCategories) { (result: Result<CategoryResponse, APIErrors>) in
             switch result {
             case .success(let categoryResponse):
                 
@@ -15,7 +14,6 @@ final class ProductNetworkService: IProductNetworkService {
                         completion(.failure(.noDataInResponse))
                     }
                 }
-                
                 completion(.success(categoryResponse.menuList))
             case .failure(let error):
                 completion(.failure(error))
@@ -25,8 +23,7 @@ final class ProductNetworkService: IProductNetworkService {
     
     func getProducts(inCategory category: String, completion: @escaping (Result<[ProductDTO], APIErrors>) -> Void) {
         APINetworkManager.request(
-            to: ProductAPIEndpoint.getProducts(inCategory: category)) { [weak self] (result: Result<ProductResponse, APIErrors>) in
-            guard let self else { return }
+            to: ProductAPIEndpoint.getProducts(inCategory: category)) { (result: Result<ProductResponse, APIErrors>) in
             switch result {
             case .success(let productResponse):
                 

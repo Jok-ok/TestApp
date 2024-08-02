@@ -1,5 +1,5 @@
 import Foundation
 
-protocol IProductListRouter {
-    func showDetailProduct()
+protocol IProductListRouter {    
+    func showError(title: String, message: String, cancelButtonTitle: String)
 }
